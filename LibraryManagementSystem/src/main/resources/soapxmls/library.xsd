@@ -1,0 +1,551 @@
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://fatihbayhan.com/librarymanagement"
+        xmlns:tns="http://fatihbayhan.com/librarymanagement"
+        elementFormDefault="qualified">
+
+    <xs:complexType name="UserResponse">
+        <xs:sequence>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="identityNumber" type="xs:string"/>
+            <xs:element name="fullName" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:string"/>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:string"/>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllUsersRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllUsersResponse" type="tns:GetAllUsersResponse"/>
+
+    <xs:complexType name="GetAllUsersResponse">
+        <xs:sequence>
+            <xs:element name="users" type="tns:UserResponse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="UpdateUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:string"/>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:string"/>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SearchUsersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="searchTerm" type="xs:string"/>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SearchUsersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="users" type="tns:UserResponse" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="totalElements" type="xs:long"/>
+                <xs:element name="totalPages" type="xs:int"/>
+                <xs:element name="currentPage" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!--    <xs:element name="CreateCategory" type="tns:CategoryRequest"/>-->
+
+
+    <xs:complexType name="CategoryRequest">
+        <xs:sequence>
+            <xs:element name="categoryName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="CreateCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllCategoriesRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryId" type="xs:string"/>
+                <xs:element name="categoryName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CategoryResponse" type="tns:CategoryResponse"/>
+    <xs:complexType name="CategoryResponse">
+        <xs:sequence>
+            <xs:element name="categoryId" type="xs:string"/>
+            <xs:element name="categoryName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GetAllCategoriesResponse" type="tns:GetAllCategoriesResponse"/>
+
+    <xs:complexType name="GetAllCategoriesResponse">
+        <xs:sequence>
+            <xs:element name="categories" type="tns:CategoryResponse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="DeleteCategoryResponse" type="tns:DeleteCategoryResponse"/>
+
+    <xs:complexType name="DeleteCategoryResponse">
+        <xs:sequence>
+            <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="SearchCategoriesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="searchTerm" type="xs:string"/>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SearchCategoriesResponse">
+        <xs:sequence>
+            <xs:element name="categories" type="tns:CategoryResponse" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="totalElements" type="xs:long"/>
+            <xs:element name="totalPages" type="xs:int"/>
+            <xs:element name="currentPage" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="birthDate" type="xs:date" minOccurs="0"/>
+                <xs:element name="deathDate" type="xs:date" minOccurs="0"/>
+                <xs:element name="nationality" type="xs:string"/>
+                <xs:element name="biography" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="writerId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllWritersRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="writerId" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="birthDate" type="xs:date"/>
+                <xs:element name="deathDate" type="xs:date" minOccurs="0"/>
+                <xs:element name="nationality" type="xs:string"/>
+                <xs:element name="biography" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="writerId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="WriterResponse" type="tns:WriterResponse"/>
+    <xs:complexType name="WriterResponse">
+        <xs:sequence>
+            <xs:element name="writerId" type="xs:string"/>
+            <xs:element name="fullName" type="xs:string"/>
+            <xs:element name="birthDate" type="xs:date"/>
+            <xs:element name="deathDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="nationality" type="xs:string"/>
+            <xs:element name="biography" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetAllWritersResponse" type="tns:GetAllWritersResponse"/>
+    <xs:complexType name="GetAllWritersResponse">
+        <xs:sequence>
+            <xs:element name="writers" type="tns:WriterResponse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="DeleteWriterResponse" type="tns:DeleteWriterResponse"/>
+
+    <xs:complexType name="DeleteWriterResponse">
+        <xs:sequence>
+            <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="SearchWritersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="searchTerm" type="xs:string"/>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SearchWritersResponse" type="tns:SearchWritersResponse"/>
+
+    <xs:complexType name="SearchWritersResponse">
+        <xs:sequence>
+            <xs:element name="writers" type="tns:WriterResponse" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="totalElements" type="xs:long"/>
+            <xs:element name="totalPages" type="xs:int"/>
+            <xs:element name="currentPage" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="isbn" type="xs:string"/>
+                <xs:element name="publisher" type="xs:string"/>
+                <xs:element name="language" type="xs:string"/>
+                <xs:element name="pages" type="xs:int"/>
+                <xs:element name="writerId" type="xs:string"/>
+                <xs:element name="categoryIds" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllBooksRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="isbn" type="xs:string"/>
+                <xs:element name="publisher" type="xs:string"/>
+                <xs:element name="language" type="xs:string"/>
+                <xs:element name="pages" type="xs:int"/>
+                <xs:element name="writerId" type="xs:string"/>
+                <xs:element name="categoryIds" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BookResponse" type="tns:BookResponse"/>
+    <xs:complexType name="BookResponse">
+        <xs:sequence>
+            <xs:element name="bookId" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="isbn" type="xs:string"/>
+            <xs:element name="publisher" type="xs:string"/>
+            <xs:element name="language" type="xs:string"/>
+            <xs:element name="pages" type="xs:int"/>
+            <xs:element name="writer" type="tns:WriterResponse"/>
+            <xs:element name="categories" type="tns:CategoryResponse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetAllBooksResponse" type="tns:GetAllBooksResponse"/>
+
+    <xs:complexType name="GetAllBooksResponse">
+        <xs:sequence>
+            <xs:element name="books" type="tns:BookResponse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="DeleteBookResponse" type="tns:DeleteBookResponse"/>
+
+    <xs:complexType name="DeleteBookResponse">
+        <xs:sequence>
+            <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="SearchBooksRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="searchTerm" type="xs:string"/>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SearchBooksResponse" type="tns:SearchBooksResponse"/>
+
+    <xs:complexType name="SearchBooksResponse">
+        <xs:sequence>
+            <xs:element name="books" type="tns:BookResponse" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="totalElements" type="xs:long"/>
+            <xs:element name="totalPages" type="xs:int"/>
+            <xs:element name="currentPage" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="BorrowBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+                <xs:element name="userId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BookBorrowingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookBorrowingId" type="xs:string"/>
+                <xs:element name="bookId" type="xs:string"/>
+                <xs:element name="userId" type="xs:string"/>
+                <xs:element name="borrowDate" type="xs:date"/>
+                <xs:element name="mustReturnDate" type="xs:date"/>
+                <xs:element name="isReturned" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="ReturnBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookBorrowingId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ReturnBookResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookBorrowingId" type="xs:string"/>
+                <xs:element name="returnDate" type="xs:date"/>
+                <xs:element name="isReturned" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllBookBorrowingsRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllBookBorrowingsResponse" type="tns:GetAllBookBorrowingsResponse"/>
+
+<!--    <xs:complexType name="GetAllBookBorrowingsResponse">-->
+<!--        <xs:sequence>-->
+<!--            <xs:element name="books" type="tns:BookBorrowingResponse" minOccurs="0" maxOccurs="unbounded"/>-->
+<!--        </xs:sequence>-->
+<!--    </xs:complexType>-->
+
+        <xs:complexType name="GetAllBookBorrowingsResponse">
+            <xs:sequence>
+                <xs:element name="BookBorrowingResponse" type="tns:BookBorrowingsResponse" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+    <xs:complexType name="BookBorrowingsResponse">
+        <xs:sequence>
+            <xs:sequence>
+                <xs:element name="bookBorrowingId" type="xs:string"/>
+                <xs:element name="book" type="tns:BookResponse"/>
+                <xs:element name="user" type="tns:UserResponse"/>
+                <xs:element name="borrowDate" type="xs:date"/>
+                <xs:element name="mustReturnDate" type="xs:date"/>
+                <xs:element name="isReturned" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+
+
+
+
+
+<!--    <xs:element name="BookResponse" type="tns:BookResponse"/>-->
+<!--    <xs:complexType name="BookResponse">-->
+<!--        <xs:sequence>-->
+<!--            <xs:element name="bookId" type="xs:string"/>-->
+<!--            <xs:element name="title" type="xs:string"/>-->
+<!--            <xs:element name="isbn" type="xs:string"/>-->
+<!--            <xs:element name="publisher" type="xs:string"/>-->
+<!--            <xs:element name="language" type="xs:string"/>-->
+<!--            <xs:element name="pages" type="xs:int"/>-->
+<!--            <xs:element name="writer" type="tns:WriterResponse"/>-->
+<!--            <xs:element name="categories" type="tns:CategoryResponse" minOccurs="0" maxOccurs="unbounded"/>-->
+<!--        </xs:sequence>-->
+<!--    </xs:complexType>-->
+
+
+<!--    <xs:element name="GetAllBooksResponse" type="tns:GetAllBooksResponse"/>-->
+
+<!--    <xs:complexType name="GetAllBooksResponse">-->
+<!--        <xs:sequence>-->
+<!--            <xs:element name="books" type="tns:BookResponse" minOccurs="0" maxOccurs="unbounded"/>-->
+<!--        </xs:sequence>-->
+<!--    </xs:complexType>-->
+
+
+
+    <!--    <xs:element name="GetAllBookBorrowingsResponse">-->
+    <!--        <xs:complexType>-->
+    <!--            <xs:sequence>-->
+    <!--                <xs:element name="bookBorrowings" type="tns:BookBorrowingResponse" minOccurs="0" maxOccurs="unbounded"/>-->
+    <!--            </xs:sequence>-->
+    <!--        </xs:complexType>-->
+    <!--    </xs:element>-->
+
+
+    <!--    <xs:element name="GetAllBooksResponse" type="tns:GetAllBooksResponse"/>-->
+
+    <!--    <xs:complexType name="GetAllBooksResponse">-->
+    <!--        <xs:sequence>-->
+    <!--            <xs:element name="books" type="tns:BookResponse" minOccurs="0" maxOccurs="unbounded"/>-->
+    <!--        </xs:sequence>-->
+    <!--    </xs:complexType>-->
+
+    <!--    <xs:element name="CategoryRequest">-->
+    <!--        <xs:complexType>-->
+    <!--            <xs:sequence>-->
+    <!--                <xs:element name="categoryName" type="xs:string"/>-->
+    <!--            </xs:sequence>-->
+    <!--        </xs:complexType>-->
+    <!--    </xs:element>-->
+    <!--    <xs:element name="CategoryResponse">-->
+    <!--        <xs:complexType>-->
+    <!--            <xs:sequence>-->
+    <!--                <xs:element name="categoryId" type="xs:string"/>-->
+    <!--                <xs:element name="categoryName" type="xs:string"/>-->
+    <!--            </xs:sequence>-->
+    <!--        </xs:complexType>-->
+    <!--    </xs:element>-->
+
+
+</xs:schema>

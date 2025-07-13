@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://fatihbayhan.com/librarymanagement" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://fatihbayhan.com/librarymanagement" targetNamespace="http://fatihbayhan.com/librarymanagement">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://fatihbayhan.com/librarymanagement">
+
+
+<!--    <xs:element name="CreateCategory" type="tns:CategoryRequest"/>-->
+
+
+    <xs:complexType name="CategoryRequest">
+        <xs:sequence>
+            <xs:element name="categoryName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="CreateCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllCategoriesRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryId" type="xs:string"/>
+                <xs:element name="categoryName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteCategoryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="categoryId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CategoryResponse">
+        <xs:sequence>
+            <xs:element name="categoryId" type="xs:string"/>
+            <xs:element name="categoryName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetAllCategoriesResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" type="tns:CategoryResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DeleteCategoryResponse">
+        <xs:sequence>
+            <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CreateUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CreateUserRequestIki">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="identityNumber" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="email" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SearchCategoriesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="searchTerm" type="xs:string"/>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SearchCategoriesResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" type="tns:CategoryResponse"/>
+            <xs:element name="totalElements" type="xs:long"/>
+            <xs:element name="totalPages" type="xs:int"/>
+            <xs:element name="currentPage" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element minOccurs="0" name="birthDate" type="xs:date"/>
+                <xs:element minOccurs="0" name="deathDate" type="xs:date"/>
+                <xs:element name="nationality" type="xs:string"/>
+                <xs:element name="biography" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="writerId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllWritersRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="writerId" type="xs:string"/>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="birthDate" type="xs:date"/>
+                <xs:element minOccurs="0" name="deathDate" type="xs:date"/>
+                <xs:element name="nationality" type="xs:string"/>
+                <xs:element name="biography" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteWriterRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="writerId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="WriterResponse">
+        <xs:sequence>
+            <xs:element name="writerId" type="xs:string"/>
+            <xs:element name="fullName" type="xs:string"/>
+            <xs:element name="birthDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="deathDate" type="xs:date"/>
+            <xs:element name="nationality" type="xs:string"/>
+            <xs:element name="biography" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetAllWritersResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="writers" type="tns:WriterResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DeleteWriterResponse">
+        <xs:sequence>
+            <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="SearchWritersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="searchTerm" type="xs:string"/>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SearchWritersResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="writers" type="tns:WriterResponse"/>
+            <xs:element name="totalElements" type="xs:long"/>
+            <xs:element name="totalPages" type="xs:int"/>
+            <xs:element name="currentPage" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="isbn" type="xs:string"/>
+                <xs:element name="publisher" type="xs:string"/>
+                <xs:element name="language" type="xs:string"/>
+                <xs:element name="pages" type="xs:int"/>
+                <xs:element name="writerId" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="categoryIds" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllBooksRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="isbn" type="xs:string"/>
+                <xs:element name="publisher" type="xs:string"/>
+                <xs:element name="language" type="xs:string"/>
+                <xs:element name="pages" type="xs:int"/>
+                <xs:element name="writerId" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="categoryIds" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="BookResponse">
+        <xs:sequence>
+            <xs:element name="bookId" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="isbn" type="xs:string"/>
+            <xs:element name="publisher" type="xs:string"/>
+            <xs:element name="language" type="xs:string"/>
+            <xs:element name="pages" type="xs:int"/>
+            <xs:element name="writer" type="tns:WriterResponse"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="categories" type="tns:CategoryResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetAllBooksResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="books" type="tns:BookResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DeleteBookResponse">
+        <xs:sequence>
+            <xs:element name="success" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="SearchBooksRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="searchTerm" type="xs:string"/>
+                <xs:element name="page" type="xs:int"/>
+                <xs:element name="size" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SearchBooksResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="books" type="tns:BookResponse"/>
+            <xs:element name="totalElements" type="xs:long"/>
+            <xs:element name="totalPages" type="xs:int"/>
+            <xs:element name="currentPage" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="BorrowBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookId" type="xs:string"/>
+                <xs:element name="userId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="BookBorrowingResponse">
+        <xs:sequence>
+            <xs:element name="bookBorrowingId" type="xs:string"/>
+            <xs:element name="bookId" type="xs:string"/>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="borrowDate" type="xs:date"/>
+            <xs:element name="mustReturnDate" type="xs:date"/>
+            <xs:element name="isReturned" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="ReturnBookRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bookBorrowingId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="ReturnBookResponse">
+        <xs:sequence>
+            <xs:element name="bookBorrowingId" type="xs:string"/>
+            <xs:element name="returnDate" type="xs:date"/>
+            <xs:element name="isReturned" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+<!--    <xs:element name="CategoryRequest">-->
+<!--        <xs:complexType>-->
+<!--            <xs:sequence>-->
+<!--                <xs:element name="categoryName" type="xs:string"/>-->
+<!--            </xs:sequence>-->
+<!--        </xs:complexType>-->
+<!--    </xs:element>-->
+<!--    <xs:element name="CategoryResponse">-->
+<!--        <xs:complexType>-->
+<!--            <xs:sequence>-->
+<!--                <xs:element name="categoryId" type="xs:string"/>-->
+<!--                <xs:element name="categoryName" type="xs:string"/>-->
+<!--            </xs:sequence>-->
+<!--        </xs:complexType>-->
+<!--    </xs:element>-->
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="DeleteCategoryRequest">
+    <wsdl:part element="tns:DeleteCategoryRequest" name="DeleteCategoryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetBookRequest">
+    <wsdl:part element="tns:GetBookRequest" name="GetBookRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateCategoryRequest">
+    <wsdl:part element="tns:CreateCategoryRequest" name="CreateCategoryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllBooksRequest">
+    <wsdl:part element="tns:GetAllBooksRequest" name="GetAllBooksRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteWriterRequest">
+    <wsdl:part element="tns:DeleteWriterRequest" name="DeleteWriterRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateWriterRequest">
+    <wsdl:part element="tns:UpdateWriterRequest" name="UpdateWriterRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllCategoriesRequest">
+    <wsdl:part element="tns:GetAllCategoriesRequest" name="GetAllCategoriesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteBookRequest">
+    <wsdl:part element="tns:DeleteBookRequest" name="DeleteBookRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateWriterRequest">
+    <wsdl:part element="tns:CreateWriterRequest" name="CreateWriterRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateCategoryRequest">
+    <wsdl:part element="tns:UpdateCategoryRequest" name="UpdateCategoryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetWriterRequest">
+    <wsdl:part element="tns:GetWriterRequest" name="GetWriterRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SearchBooksRequest">
+    <wsdl:part element="tns:SearchBooksRequest" name="SearchBooksRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllWritersRequest">
+    <wsdl:part element="tns:GetAllWritersRequest" name="GetAllWritersRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCategoryRequest">
+    <wsdl:part element="tns:GetCategoryRequest" name="GetCategoryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateBookRequest">
+    <wsdl:part element="tns:CreateBookRequest" name="CreateBookRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SearchWritersRequest">
+    <wsdl:part element="tns:SearchWritersRequest" name="SearchWritersRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BorrowBookRequest">
+    <wsdl:part element="tns:BorrowBookRequest" name="BorrowBookRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateBookRequest">
+    <wsdl:part element="tns:UpdateBookRequest" name="UpdateBookRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateUserRequest">
+    <wsdl:part element="tns:CreateUserRequest" name="CreateUserRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SearchCategoriesRequest">
+    <wsdl:part element="tns:SearchCategoriesRequest" name="SearchCategoriesRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReturnBookRequest">
+    <wsdl:part element="tns:ReturnBookRequest" name="ReturnBookRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateUserResponse">
+    <wsdl:part element="tns:CreateUserResponse" name="CreateUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LibraryPort">
+    <wsdl:operation name="DeleteCategory">
+      <wsdl:input message="tns:DeleteCategoryRequest" name="DeleteCategoryRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <wsdl:input message="tns:GetBookRequest" name="GetBookRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCategory">
+      <wsdl:input message="tns:CreateCategoryRequest" name="CreateCategoryRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBooks">
+      <wsdl:input message="tns:GetAllBooksRequest" name="GetAllBooksRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWriter">
+      <wsdl:input message="tns:DeleteWriterRequest" name="DeleteWriterRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWriter">
+      <wsdl:input message="tns:UpdateWriterRequest" name="UpdateWriterRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <wsdl:input message="tns:GetAllCategoriesRequest" name="GetAllCategoriesRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBook">
+      <wsdl:input message="tns:DeleteBookRequest" name="DeleteBookRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateWriter">
+      <wsdl:input message="tns:CreateWriterRequest" name="CreateWriterRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <wsdl:input message="tns:UpdateCategoryRequest" name="UpdateCategoryRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetWriter">
+      <wsdl:input message="tns:GetWriterRequest" name="GetWriterRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBooks">
+      <wsdl:input message="tns:SearchBooksRequest" name="SearchBooksRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWriters">
+      <wsdl:input message="tns:GetAllWritersRequest" name="GetAllWritersRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <wsdl:input message="tns:GetCategoryRequest" name="GetCategoryRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBook">
+      <wsdl:input message="tns:CreateBookRequest" name="CreateBookRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SearchWriters">
+      <wsdl:input message="tns:SearchWritersRequest" name="SearchWritersRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="BorrowBook">
+      <wsdl:input message="tns:BorrowBookRequest" name="BorrowBookRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBook">
+      <wsdl:input message="tns:UpdateBookRequest" name="UpdateBookRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input message="tns:CreateUserRequest" name="CreateUserRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:CreateUserResponse" name="CreateUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchCategories">
+      <wsdl:input message="tns:SearchCategoriesRequest" name="SearchCategoriesRequest">
+    </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnBook">
+      <wsdl:input message="tns:ReturnBookRequest" name="ReturnBookRequest">
+    </wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LibraryPortSoap11" type="tns:LibraryPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="DeleteCategory">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DeleteCategoryRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetBook">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCategory">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateCategoryRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBooks">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllBooksRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWriter">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DeleteWriterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateWriter">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UpdateWriterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCategories">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllCategoriesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBook">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DeleteBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateWriter">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateWriterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategory">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UpdateCategoryRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetWriter">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetWriterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBooks">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SearchBooksRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWriters">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllWritersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategory">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCategoryRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBook">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SearchWriters">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SearchWritersRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="BorrowBook">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="BorrowBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBook">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UpdateBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchCategories">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SearchCategoriesRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnBook">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ReturnBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LibraryPortService">
+    <wsdl:port binding="tns:LibraryPortSoap11" name="LibraryPortSoap11">
+      <soap:address location="http://localhost:8090/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.library.grpc";
+option java_outer_classname = "LibraryProto";
+
+package library;
+
+// The Unary service definition.
+service LibraryService {
+  rpc WhoBooked (BookId) returns (PeopleList);
+  rpc GetUnavailableBooks (Empty) returns (BookList);
+  rpc GetTopReaders (TopRequest) returns (PeopleList);
+  rpc GetCurrentlyBorrowedBooks (Empty) returns (BookTransactionList);
+
+}
+
+// The request message containing the unary call message.
+message BookId {
+  string bookId = 1;
+}
+
+// The response message containing the unary call response.
+message People {
+  int64 id = 1;
+  string identityNumber = 2;
+  string fullName = 3;
+  string email = 4;
+  int32 borrowCount=5;
+  int32 readCount=6;
+}
+
+message PeopleList {
+  repeated People people = 1;
+}
+
+message Book {
+  int64 id = 1;
+  string title = 2;
+  string isbn = 3;
+  string publisher = 4;
+  string language = 5;
+  int32 pages = 6;
+  int64 writerId = 7;
+  repeated int64 categoryIds = 8;
+  repeated Category categoryDTOS = 9;
+  Writer writerDTO = 10;
+}
+
+message BookList {
+  repeated Book books = 1;
+}
+
+message TopRequest {
+  int32 limit = 1;
+}
+message Empty {}
+
+message BookTransactionList {
+  repeated BookTransaction bookTransaction=1;
+}
+
+message BookTransaction {
+  int64 bookId = 1;
+  int64 transactionId = 2;
+  int64 userId = 3;
+  Book book = 4;
+  People user = 5;
+  string borrowDate = 6;
+  string mustReturnDate = 7;
+  bool isReturned = 8;
+}
+
+message Category {
+  int64 categoryId = 1;
+  string categoryName = 2;
+}
+
+message Writer {
+  int64 id = 1;
+  string fullName = 2;
+  string birthDate = 3;
+  string deathDate = 4;
+  string nationality = 5;
+  string biography = 6;
+}
